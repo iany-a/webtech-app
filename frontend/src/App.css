@@ -16,7 +16,7 @@ body,
   box-sizing: border-box;
 }
 
-/* ---------------- Auth ---------------- */
+/* ---------------- Auth / Login ---------------- */
 .auth-container {
   display: flex;
   flex-direction: column;
@@ -63,13 +63,8 @@ body,
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -89,15 +84,15 @@ body,
 /* ---------------- App Layout ---------------- */
 .app-container {
   display: flex;
-  height: 100vh;
-  /* full viewport height */
+  height: 100vh; /* full viewport height */
   width: 100vw;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.notes-list {
+/* Sidebar: notes list */
+.notes-sidebar {
   width: 25%;
   overflow-y: auto;
   border-right: 1px solid #ddd;
@@ -105,92 +100,105 @@ body,
   background: #f9f9f9;
 }
 
-.editor-header {
-  margin-bottom: "10px";
-  display: "flex";
-  justify-content: "space-between"
+.notes-sidebar .note {
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
+/* Right pane: editor/form */
 .editor {
-  width: 75%;
+  width: 75%; /* remaining space */
   display: flex;
   flex-direction: column;
   padding: 1rem;
   box-sizing: border-box;
 }
 
-/* Make the form fill the editor height */
+/* Optional header with logout button */
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.logout-button {
+  width: auto;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.logout-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* ---------------- Note Form ---------------- */
 .note-form {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  /* fill the .editor height */
-}
-
-/* All fields except textarea take natural height */
-.note-form input,
-.note-form button {
-  margin-bottom: 10px;
-  padding: 8px;
-  font-size: 16px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Textarea grows to fill remaining space */
-.note-form textarea {
-  flex-grow: 1;
-  /* expand to remaining vertical space */
-  min-height: 150px;
-  resize: vertical;
-  /* allow user to resize if needed */
-  padding: 8px;
-  font-size: 16px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  height: auto;
-  /* override any fixed height */
-}
-
-
-
-
-/* Form and note card styling */
-.note-form,
-.note-card {
-  width: 100%;
-  padding: 20px;
-  margin-bottom: 1rem;
+  height: 100%; /* fill editor height */
   background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
-}
-
-/* Inputs/buttons inside forms */
-input,
-textarea,
-button {
-  width: 100%;
-  margin: 5px 0;
-  padding: 8px;
+  padding: 20px;
   box-sizing: border-box;
 }
 
-textarea {
+/* Inputs / buttons in form */
+.note-form input,
+.note-form button,
+.note-form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.note-form textarea {
+  flex-grow: 1; /* expand to fill remaining vertical space */
+  min-height: 150px;
   resize: vertical;
+  height: auto;
 }
 
-button {
-  cursor: pointer;
-}
-
-/* Individual note item */
-.note {
-  border: 1px solid #ddd;
-  margin: 10px 0;
+/* Markdown preview */
+.markdown-preview {
+  margin-top: 20px;
   padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* ---------------- Note Cards / List ---------------- */
+.note-card {
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.note-card h3 {
+  margin: 0 0 5px 0;
+}
+
+.note-card p {
+  margin: 5px 0;
+}
+
+.note-card button {
+  margin-right: 5px;
+  padding: 4px 8px;
+  font-size: 14px;
 }
 
 /* ---------------- Search Bar ---------------- */
@@ -200,23 +208,4 @@ input[type="text"].search-bar {
   margin: 12px 0;
   font-size: 16px;
   box-sizing: border-box;
-}
-
-.logout-button {
-  width: auto;
-  /* shrink to content */
-  padding: 8px 16px;
-  /* smaller padding */
-  font-size: 14px;
-  /* smaller text */
-  margin-bottom: 1rem;
-  /* spacing from other content */
-  cursor: pointer;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.logout-button:hover {
-  background-color: #e0e0e0;
 }

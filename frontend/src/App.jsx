@@ -76,15 +76,16 @@ export default function App() {
   }
 
   return (
-    <div className= "app-container">
+    <div className="app-container">
       {/* Left pane: notes list */}
-      <div className="notes-list">
+      <div className="notes-sidebar">
         <input
           type="text"
           placeholder="Search notes..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={{ width: "100%", marginBottom: "10px", padding: "5px" }}
+          className="search-bar"
         />
         <NoteList
           notes={notes.filter(note => {
@@ -101,18 +102,14 @@ export default function App() {
       </div>
 
       {/* Right pane: note form */}
-      <div className = "editor">
-        <div className = "editor-header">
-          <h2>{editingNote ? "Edit Note" : "New Note"}</h2>
-          <button className="logout-button" onClick={() => {
-            localStorage.removeItem("user");
-            localStorage.removeItem("token");
-            setUser(null);
-            setToken(null);
-          }}>Logout</button>
-        </div>
-
+      <div className="editor">
         <NoteForm note={editingNote} onSave={handleSave} />
+        <button className="logout-button" onClick={() => {
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          setUser(null);
+          setToken(null);
+        }}>Logout</button>
       </div>
     </div>
   );

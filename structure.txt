@@ -20,4 +20,5 @@ src/
 
 bugs:
 no cancel editing note
-new note / edit note appears twice
+
+“The application is a SPA built with React and a Node.js REST backend using Sequelize ORM over a relational database. It supports authentication, CRUD operations on notes, file attachments, keyword-based organization, markdown note editing, note sharing between users, and basic study groups.”
