@@ -1,0 +1,23 @@
+src/
+│
+├─ components/                # All React components
+│   ├─ Auth.jsx               # Login/register form
+│   ├─ NoteForm.jsx           # Add/edit note form (from NotesEditor)
+│   ├─ NoteList.jsx           # List all notes (from Notes)
+│   ├─ NoteItem.jsx           # Single note card
+│   └─ FilterPanel.jsx        # Optional filters (class, labels, keywords, date)
+│
+├─ utils/                     # Utility/helper files
+│   ├─ storage.js             # LocalStorage helpers (token, notes, etc.)
+│   └─ markdown.js            # Markdown parsing/conversion helpers
+│
+├─ App.jsx                     # Main App component
+├─ App.css                     # Styles specific to App component
+├─ index.js                    # React entry point
+├─ index.css                   # Global styles (body, fonts, margins)
+└─ main.jsx (optional)         # Only if your setup currently uses it as entry
+
+
+bugs:
+no cancel editing note
+new note / edit note appears twice
