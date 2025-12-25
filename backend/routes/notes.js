@@ -10,17 +10,27 @@ const upload = multer({ dest: "uploads/" });
 
 // --- Middleware to check JWT ---
 function authenticate(req, res, next) {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) return res.status(401).json({ message: "No token" });
+  const authHeader = req.headers.authorization;
 
-    const token = authHeader.split(" ")[1];
-    try {
-        const decoded = jwt.verify(token, SECRET_KEY);
-        req.userId = decoded.userId;
-        next();
-    } catch {
-        res.status(401).json({ message: "Invalid token" });
-    }
+  if (!authHeader) {
+    console.log("❌ No Authorization header");
+    return res.status(401).json({ message: "No token" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // IMPORTANT: ONLY THIS
+    req.userId = decoded.userId;
+
+    console.log("✅ Auth OK, userId =", req.userId);
+    next();
+  } catch (err) {
+    console.error("❌ JWT error:", err.message);
+    return res.status(401).json({ message: "Invalid token" });
+  }
 }
 
 // --- GET all notes ---
