@@ -1,3 +1,5 @@
+import dotenv from "dotenv"; //crucial security measure
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -8,7 +10,12 @@ import notesRouter from "./routes/notes.js";
 
 const app = express();
 const PORT = 5000;
-const SECRET_KEY = "AKDDKKDFKGskdkfgerito49000002jdjsjd"; // keep secret in production
+const SECRET_KEY = process.env.JWT_SECRET;
+if (!SECRET_KEY) {
+  throw new Error("JWT_SECRET is not defined");
+}
+
+
 
 app.use(cors());
 app.use(bodyParser.json());
